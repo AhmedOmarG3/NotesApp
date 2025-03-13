@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do/Widgets/custom_app_bar.dart';
 import 'package:to_do/Widgets/custom_container.dart';
 import 'package:to_do/Widgets/note_item.dart';
+import 'package:to_do/Widgets/notes_list_view.dart';
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({
@@ -22,16 +23,12 @@ class NotesViewBody extends StatelessWidget {
             height: 20,
           ),
           Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: NoteItem(),
-              ),
-              itemCount: 10,
-            ),
+            child: NotesListView(),
           )
         ],
       ),
     );
   }
 }
+
+
