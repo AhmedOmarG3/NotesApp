@@ -13,7 +13,10 @@ class NotesView extends StatelessWidget {
         backgroundColor: Colors.cyan,
         onPressed: () {
           showModalBottomSheet(
-              context: context, builder: (context) => AddNoteButtonSheet());
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              context: context,
+              builder: (context) => AddNoteButtonSheet());
         },
         child: Icon(
           Icons.add,
@@ -24,5 +27,3 @@ class NotesView extends StatelessWidget {
     );
   }
 }
-
-
