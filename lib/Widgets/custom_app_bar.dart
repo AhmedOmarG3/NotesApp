@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
       children: [
         Text(
           'Notes',
-          style: TextStyle(color: Colors.white, fontSize: 28),
+          style: TextStyle( fontSize: 28),
         ),
         CustomContainer(),
       ],

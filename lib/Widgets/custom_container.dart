@@ -14,7 +14,6 @@ class CustomContainer extends StatelessWidget {
       child: Icon(
         Icons.search,
         size: 26,
-        color: Colors.white,
       ),
     );
   }
