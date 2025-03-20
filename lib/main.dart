@@ -6,14 +6,15 @@ import 'package:to_do/Models/note_model.dart';
 
 import 'package:to_do/Views/notes_view.dart';
 import 'package:to_do/add_note_cubit/add_note_cubit.dart';
-import 'package:to_do/add_note_cubit/add_note_state.dart';
+
 import 'package:to_do/simple_bloc_observer.dart';
 
 void main() async {
   Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
-  await Hive.openBox(kNotesBox);
-  Hive.registerAdapter(NoteModelAdapter());
+   Hive.registerAdapter(NoteModelAdapter());
+  await Hive.openBox<NoteModel>(kNotesBox);
+ 
   runApp(ToDOApp());
 }
 
