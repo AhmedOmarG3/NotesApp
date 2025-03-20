@@ -4,6 +4,7 @@ import 'package:to_do/Models/note_model.dart';
 import 'package:to_do/Widgets/custom_button.dart';
 import 'package:to_do/Widgets/custom_text_field.dart';
 import 'package:to_do/add_note_cubit/add_note_cubit.dart';
+import 'package:to_do/add_note_cubit/add_note_state.dart';
 
 class NoteForm extends StatefulWidget {
   const NoteForm({
@@ -47,15 +48,24 @@ class _NoteFormState extends State<NoteForm> {
           SizedBox(
             height: 50,
           ),
-          CustomButton(
-            onTap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                NoteModel note = NoteModel(title: title!, subTitle: subTitle!,color: Colors.blue.value,date:DateTime.now().toString() );
-                BlocProvider.of<AddNoteCubit>(context).addNote(note);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-              }
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is AddNoteLoading?true:false,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    NoteModel note = NoteModel(
+                        title: title!,
+                        subTitle: subTitle!,
+                        color: Colors.blue.value,
+                        date: DateTime.now().toString());
+                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                  }
+                },
+              );
             },
           ),
           SizedBox(
