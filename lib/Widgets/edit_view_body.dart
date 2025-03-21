@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do/Models/note_model.dart';
 import 'package:to_do/Widgets/custom_app_bar.dart';
 import 'package:to_do/Widgets/custom_text_field.dart';
+import 'package:to_do/Widgets/edit_notes_list_view.dart';
 import 'package:to_do/cubits/note_cubit/notes_cubit_cubit.dart';
 
 class EditNoteViewBody extends StatefulWidget {
@@ -21,14 +22,14 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
           const SizedBox(
             height: 50,
           ),
           CustomAppBar(
-            onPressed: () async{
+            onPressed: () async {
               widget.note.title = title ?? widget.note.title;
               widget.note.subTitle = content ?? widget.note.subTitle;
               await widget.note.save();
@@ -61,8 +62,15 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               maxLines: 5,
             ),
           ),
+          const SizedBox(
+            height: 16,
+          ),
+          EditeNotesColorList(
+            note: widget.note,
+          ),
         ],
       ),
     );
   }
 }
+
