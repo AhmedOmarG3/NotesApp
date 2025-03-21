@@ -5,7 +5,7 @@ import 'package:to_do/Constants/constant.dart';
 import 'package:to_do/Models/note_model.dart';
 
 import 'package:to_do/Views/notes_view.dart';
-import 'package:to_do/add_note_cubit/add_note_cubit.dart';
+
 
 import 'package:to_do/simple_bloc_observer.dart';
 

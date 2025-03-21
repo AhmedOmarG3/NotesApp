@@ -4,8 +4,9 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:to_do/Widgets/custom_button.dart';
 import 'package:to_do/Widgets/custom_text_field.dart';
 import 'package:to_do/Widgets/note_form.dart';
-import 'package:to_do/add_note_cubit/add_note_cubit.dart';
-import 'package:to_do/add_note_cubit/add_note_state.dart';
+
+import 'package:to_do/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:to_do/cubits/add_note_cubit/add_note_state.dart';
 
 class AddNoteButtonSheet extends StatelessWidget {
   const AddNoteButtonSheet({
@@ -25,7 +26,7 @@ class AddNoteButtonSheet extends StatelessWidget {
         builder: (context, state) {
           return AbsorbPointer(absorbing: state is AddNoteLoading?true:false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.only(left: 16, right: 16, bottom: MediaQuery.of(context).viewInsets.bottom),
               child: SingleChildScrollView(child: NoteForm()),
             ),
           );
