@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/Models/note_model.dart';
 import 'package:to_do/Widgets/edit_view_body.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, required this.color});
-  final Color color;
+  const NoteItem({super.key, this.color, required this.note});
+  final Color? color;
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -14,23 +16,26 @@ class NoteItem extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.only(top: 35, bottom: 35, left: 20, right: 10),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: color),
+              borderRadius: BorderRadius.circular(16),
+              color: Color(note.color)),
           child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
             ListTile(
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: Text(
-                  'Flutter Notes',
+                  note.title,
                   style: TextStyle(color: Colors.black, fontSize: 25),
                 ),
               ),
               subtitle: Text(
-                'Build your career with\n Ahmed Omar',
+                note.subTitle,
                 style: TextStyle(
                     color: Colors.black.withOpacity(0.5), fontSize: 18),
               ),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    note.delete();
+                  },
                   icon: Icon(
                     Icons.delete,
                     color: Colors.black,
@@ -39,7 +44,7 @@ class NoteItem extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: Text('May 21,2022',
+              child: Text(note.date,
                   style: TextStyle(
                       color: Colors.black.withOpacity(0.5), fontSize: 20)),
             )
