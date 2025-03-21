@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:to_do/Widgets/custom_button.dart';
-import 'package:to_do/Widgets/custom_text_field.dart';
 import 'package:to_do/Widgets/note_form.dart';
 
 import 'package:to_do/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:to_do/cubits/add_note_cubit/add_note_state.dart';
+import 'package:to_do/cubits/note_cubit/notes_cubit_cubit.dart';
 
 class AddNoteButtonSheet extends StatelessWidget {
   const AddNoteButtonSheet({
@@ -20,7 +18,8 @@ class AddNoteButtonSheet extends StatelessWidget {
       child: BlocConsumer<AddNoteCubit, AddNoteState>(
         listener: (context, state) {
           if (state is AddNoteSuccess) {
-            Navigator.pop(context);
+           
+            Navigator.pop(context); BlocProvider.of<NotesCubit>(context).fetchAllNotes();
           }
         },
         builder: (context, state) {
